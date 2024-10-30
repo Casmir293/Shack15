@@ -1,12 +1,12 @@
 <template>
   <div class="overflow-x-scroll">
     <table class="bg-white border min-w-[680px] lg:min-w-[945px]">
-      <thead>
+      <thead class="border-b bg-slate-200">
         <tr>
-          <th class="py-2">Event</th>
-          <th class="py-2">Date</th>
-          <th class="py-2">Attendance</th>
-          <th class="py-2">Engagement</th>
+          <th class="py-3">Event</th>
+          <th class="py-3">Date</th>
+          <th class="py-3">Attendance</th>
+          <th class="py-3">Engagement</th>
         </tr>
       </thead>
       <tbody>
