@@ -1,75 +1,62 @@
-# Nuxt Minimal Starter
+# SHACK15 Metrics Dashboard - Frontend
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![Project Image](/Shack15-Frontend/public/imgs/sample-img.png)
 
-## Setup
+## Overview
 
-Make sure to install dependencies:
+This project is the frontend component of the SHACK15 Metrics Dashboard. Built with Nuxt.js, TypeScript, Chart.js, and Tailwind CSS, it provides an interactive, visually engaging interface to display community metrics for SHACK15. Users can view essential stats such as total members, monthly active members, event attendance, and communication engagement, with data fetched from a Laravel backend API. It can be accessed live at [SHACK15 Metrics Dashboard](https://shack15.vercel.app).
 
-```bash
-# npm
-npm install
+## Project Structure
 
-# pnpm
-pnpm install
+- Nuxt.js: Vue-based framework for server-side rendering and static site generation.
+- TypeScript: Ensures type safety and enhanced code quality throughout the project.
+- Chart.js: Visualization library used for creating interactive charts.
+- TailwindCSS: Utility-first CSS framework for styling components and layouts.
 
-# yarn
-yarn install
+## Features
 
-# bun
-bun install
-```
+- Metrics Summary Cards: High-level statistics such as total members and active members.
+- Interactive Charts: Visualize time-series data for event attendance and engagement rates.
+- Event History Table: Displays the last three events with detailed attendance and engagement data.
+- Responsive Design: Optimized for both desktop and mobile screens.
+- Live Data Fetching: Real-time updates from the Laravel backend API hosted on https://shack15.casmir.dev.
 
-## Development Server
+## Installation
 
-Start the development server on `http://localhost:3000`:
+To get started with the project, follow these steps:
 
-```bash
-# npm
-npm run dev
+1. Clone the repository:
 
-# pnpm
-pnpm dev
+   ```bash
+   git clone https://github.com/Casmir293/Shack15/tree/main/Shack15-Frontend
 
-# yarn
-yarn dev
+   ```
 
-# bun
-bun run dev
-```
+2. Navigate to the project directory:
 
-## Production
+   ```bash
+   cd Shack15-Frontend
 
-Build the application for production:
+   ```
 
-```bash
-# npm
-npm run build
+3. Install dependencies:
 
-# pnpm
-pnpm build
+   ```bash
+   npm install
 
-# yarn
-yarn build
+   ```
 
-# bun
-bun run build
-```
+4. Environment variables:
 
-Locally preview production build:
+- API_BASE_URL=https://shack15.casmir.dev/api
 
-```bash
-# npm
-npm run preview
+5. Run the development server:
 
-# pnpm
-pnpm preview
+   ```bash
+   npm run dev
 
-# yarn
-yarn preview
+   ```
 
-# bun
-bun run preview
-```
+## Contributing
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Contributions are welcome! If you have any suggestions or improvements, feel free to create a pull request or open an issue.

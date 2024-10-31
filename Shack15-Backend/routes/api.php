@@ -8,4 +8,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/metrics', [MetricsController::class, 'getMetrics']);
+Route::get('/metrics', [MetricsController::class, 'index']);
