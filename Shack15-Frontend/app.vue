@@ -1,79 +1,97 @@
-<template>
-  <div class="dashboard p-8">
-    <div class="flex justify-center items-center mb-7 bg-black py-6 rounded-md">
-      <img
-        class="w-40 lg:w-80"
-        src="https://images.squarespace-cdn.com/content/v1/6656358bbb9e8644fd94bfa1/1716925868304-7FBWW4JVJGX8545EID06/S15-Horizontal-Lockup.png?format=1500w"
-        alt=""
-      />
-    </div>
-    <div class="grid grid-cols-2 gap-4 mb-8">
-      <MetricCard title="Total Members" :value="dummyData.totalMembers" />
-      <MetricCard
-        title="Monthly Active Members"
-        :value="dummyData.activeMembers"
-      />
-    </div>
-    <div class="mb-8 lg:w-[70%] mx-auto">
-      <MetricsChart
-        title="Event Attendance"
-        :chartData="attendanceData"
-        :chartOptions="chartOptions"
-      />
-    </div>
+<script setup lang="ts">
+import { fetchMetrics } from "./services/useMetrics";
 
-    <div class="lg:w-[70%] mx-auto">
-      <EventHistoryTable :events="dummyData.events" />
-    </div>
-  </div>
-</template>
-
-<script setup>
-const dummyData = {
-  totalMembers: 500,
-  activeMembers: 120,
-  events: [
+useHead({
+  title: "SHACK15",
+  link: [
     {
-      id: 1,
-      name: "Annual Meetup",
-      date: "2024-10-01",
-      attendance: 90,
-      engagement: 85,
-    },
-    {
-      id: 2,
-      name: "Monthly Webinar",
-      date: "2024-10-15",
-      attendance: 45,
-      engagement: 70,
-    },
-    {
-      id: 3,
-      name: "Hackathon",
-      date: "2024-10-20",
-      attendance: 120,
-      engagement: 95,
+      rel: "icon",
+      type: "image/jpeg",
+      href: "/imgs/shack15-icon.png",
     },
   ],
-};
+});
 
-const attendanceData = ref({
-  labels: dummyData.events.map((event) => event.name),
-  datasets: [
-    {
-      label: "Attendance (members)",
-      data: dummyData.events.map((event) => event.attendance),
-      backgroundColor: "#4CAF50",
-    },
-    {
-      label: "Engagement Rate (%)",
-      data: dummyData.events.map((event) => event.engagement),
-      backgroundColor: "#2196F3",
-    },
-  ],
+const metrics = ref<Metrics | null>(null);
+const isLoading = ref(false);
+
+onMounted(async () => {
+  isLoading.value = true;
+  metrics.value = await fetchMetrics();
+  isLoading.value = false;
+});
+
+const attendanceData = computed(() => {
+  return {
+    labels: metrics.value?.events
+      ? metrics.value.events.map((event) => event.name)
+      : [],
+    datasets: [
+      {
+        label: "Attendance (members)",
+        data: metrics.value?.events
+          ? metrics.value.events.map((event) => event.attendance)
+          : [],
+        backgroundColor: "black",
+      },
+      {
+        label: "Engagement Rate (%)",
+        data: metrics.value?.events
+          ? metrics.value.events.map((event) => event.engagement)
+          : [],
+        backgroundColor: "gray",
+      },
+    ],
+  };
 });
 
 const chartOptions = ref({
   responsive: true,
 });
 </script>
+
+<template>
+  <template v-if="isLoading">
+    <IsLoading />
+  </template>
+
+  <template v-else>
+    <section class="dashboard p-8">
+      <!-- Header -->
+      <header
+        class="flex justify-center items-center mb-7 bg-black py-6 rounded-md"
+      >
+        <NuxtLink to="/">
+          <img
+            class="w-40 lg:w-80 cursor-pointer"
+            src="/imgs/shack15-logo.png"
+            alt="shack15-logo"
+          />
+        </NuxtLink>
+      </header>
+
+      <!-- Cards -->
+      <section class="grid grid-cols-2 gap-4 mb-8">
+        <MetricCard title="Total Members" :value="metrics?.total_members" />
+        <MetricCard
+          title="Monthly Active Members"
+          :value="metrics?.active_members"
+        />
+      </section>
+
+      <!-- Bar Chart -->
+      <section class="mb-8 lg:w-[70%] mx-auto">
+        <MetricsChart
+          title="Event Attendance"
+          :chartData="attendanceData"
+          :chartOptions="chartOptions"
+        />
+      </section>
+
+      <!-- Data Table -->
+      <section class="lg:w-[70%] mx-auto">
+        <EventHistoryTable :events="metrics?.events" />
+      </section>
+    </section>
+  </template>
+</template>

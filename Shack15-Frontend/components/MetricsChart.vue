@@ -1,11 +1,4 @@
-<template>
-  <div>
-    <h3 class="text-lg font-semibold mb-4">{{ title }}</h3>
-    <BarChart :data="chartData" :options="chartOptions" />
-  </div>
-</template>
-
-<script setup>
+<script setup lang="ts">
 import { Bar } from "vue-chartjs";
 import {
   Chart,
@@ -15,15 +8,30 @@ import {
   BarElement,
   CategoryScale,
   LinearScale,
+  type ChartData,
+  type ChartOptions,
 } from "chart.js";
 
 Chart.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
-defineProps({
+const props = defineProps({
   title: String,
-  chartData: Object,
-  chartOptions: Object,
+  chartData: {
+    type: Object as PropType<ChartData<"bar">>,
+    default: () => ({
+      labels: [],
+      datasets: [],
+    }),
+  },
+  chartOptions: Object as PropType<ChartOptions<"bar">>,
 });
 
 const BarChart = Bar;
 </script>
+
+<template>
+  <div>
+    <h3 class="text-lg font-semibold mb-4">{{ title }}</h3>
+    <BarChart :data="chartData" :options="chartOptions" />
+  </div>
+</template>
