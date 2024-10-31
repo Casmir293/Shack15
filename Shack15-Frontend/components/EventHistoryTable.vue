@@ -1,7 +1,16 @@
+<script setup lang="ts">
+defineProps({
+  events: {
+    type: Array as PropType<Events[] | undefined>,
+    required: true,
+  },
+});
+</script>
+
 <template>
   <div class="overflow-x-scroll">
-    <table class="bg-white border min-w-[680px] lg:min-w-[945px]">
-      <thead class="border-b bg-slate-200">
+    <table class="bg-white border min-w-[680px] lg:min-w-[100%]">
+      <thead class="border-b bg-gray-200">
         <tr>
           <th class="py-3">Event</th>
           <th class="py-3">Date</th>
@@ -10,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="event in events" :key="event.id" class="text-center">
+        <tr v-for="(event, index) in events" :key="index" class="text-center">
           <td class="py-2">{{ event.name }}</td>
           <td class="py-2">{{ event.date }}</td>
           <td class="py-2">{{ event.attendance }}</td>
@@ -20,9 +29,3 @@
     </table>
   </div>
 </template>
-
-<script setup>
-defineProps({
-  events: Array,
-});
-</script>
