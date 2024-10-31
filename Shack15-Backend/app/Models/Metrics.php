@@ -11,14 +11,14 @@ class Metrics extends Model
 
     protected $table = 'metrics';
 
-    // Allow mass assignment for these fields
+    /* Allow mass assignment for these fields */
     protected $fillable = [
         'total_members',
         'active_members',
         'events',
     ];
 
-    // Cast events to an array when retrieved
+    /* Cast events to an array when retrieved */
     protected $casts = [
         'events' => 'array',
     ];
