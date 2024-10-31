@@ -1,6 +1,6 @@
 # SHACK15 Metrics Dashboard - Frontend
 
-![Project Image](/public/imgs/sample-img.png)
+![Project Image](/Shack15-Frontend/public/imgs/sample-img.png)
 
 ## Overview
 
