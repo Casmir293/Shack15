@@ -11,7 +11,7 @@
 
 <style scoped>
 .loading-screen {
-  @apply flex h-screen w-screen  items-center justify-center p-3 rounded-lg;
+  @apply flex h-screen w-screen items-center justify-center rounded-lg p-3;
   animation: pulse 2s infinite;
 }
 

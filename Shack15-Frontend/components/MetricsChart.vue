@@ -31,7 +31,7 @@ const BarChart = Bar;
 
 <template>
   <div>
-    <h3 class="text-lg font-semibold mb-4">{{ title }}</h3>
+    <h3 class="mb-4 text-lg font-semibold">{{ title }}</h3>
     <BarChart :data="chartData" :options="chartOptions" />
   </div>
 </template>

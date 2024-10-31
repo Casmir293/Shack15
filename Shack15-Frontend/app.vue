@@ -59,11 +59,11 @@ const chartOptions = ref({
     <section class="dashboard p-8">
       <!-- Header -->
       <header
-        class="flex justify-center items-center mb-7 bg-black py-6 rounded-md"
+        class="mb-7 flex items-center justify-center rounded-md bg-black py-6"
       >
         <NuxtLink to="/">
           <img
-            class="w-40 lg:w-80 cursor-pointer"
+            class="w-40 cursor-pointer lg:w-80"
             src="/imgs/shack15-logo.png"
             alt="shack15-logo"
           />
@@ -71,7 +71,7 @@ const chartOptions = ref({
       </header>
 
       <!-- Cards -->
-      <section class="grid grid-cols-2 gap-4 mb-8">
+      <section class="mb-8 grid grid-cols-2 gap-4">
         <MetricCard title="Total Members" :value="metrics?.total_members" />
         <MetricCard
           title="Monthly Active Members"
@@ -80,7 +80,7 @@ const chartOptions = ref({
       </section>
 
       <!-- Bar Chart -->
-      <section class="mb-8 lg:w-[70%] mx-auto">
+      <section class="mx-auto mb-8 lg:w-[70%]">
         <MetricsChart
           title="Event Attendance"
           :chartData="attendanceData"
@@ -89,7 +89,7 @@ const chartOptions = ref({
       </section>
 
       <!-- Data Table -->
-      <section class="lg:w-[70%] mx-auto">
+      <section class="mx-auto lg:w-[70%]">
         <EventHistoryTable :events="metrics?.events" />
       </section>
     </section>

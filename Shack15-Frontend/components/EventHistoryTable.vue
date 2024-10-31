@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <div class="overflow-x-scroll">
-    <table class="bg-white border min-w-[680px] lg:min-w-[100%]">
+    <table class="min-w-[680px] border bg-white sm:min-w-[100%]">
       <thead class="border-b bg-gray-200">
         <tr>
           <th class="py-3">Event</th>
