@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { fetchMetrics } from "./services/useMetrics";
 
+/** Head meta data **/
 useHead({
   title: "SHACK15",
   link: [
@@ -12,6 +13,7 @@ useHead({
   ],
 });
 
+/** Fetch and store API data **/
 const metrics = ref<Metrics | null>(null);
 const isLoading = ref(false);
 
@@ -21,24 +23,19 @@ onMounted(async () => {
   isLoading.value = false;
 });
 
+/** Chart prop data **/
 const attendanceData = computed(() => {
   return {
-    labels: metrics.value?.events
-      ? metrics.value.events.map((event) => event.name)
-      : [],
+    labels: metrics.value?.events.map((event) => event.name),
     datasets: [
       {
         label: "Attendance (members)",
-        data: metrics.value?.events
-          ? metrics.value.events.map((event) => event.attendance)
-          : [],
+        data: metrics.value?.events.map((event) => event.attendance),
         backgroundColor: "black",
       },
       {
         label: "Engagement Rate (%)",
-        data: metrics.value?.events
-          ? metrics.value.events.map((event) => event.engagement)
-          : [],
+        data: metrics.value?.events.map((event) => event.engagement),
         backgroundColor: "gray",
       },
     ],
